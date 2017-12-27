@@ -12,13 +12,14 @@
 class Bonsai
 {
   public:
-    Bonsai(String name, int pump_pin, int sensor_pin, int desired_moisture);
+    Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture);
     void check();
 	void giveWater();
     int measureMoisture();
   private:
     String _name;
     int _pump_pin;
+    int _sensor_power_pin;
     int _sensor_pin;
     int _last_moisture_level;
     int _desired_moisture;

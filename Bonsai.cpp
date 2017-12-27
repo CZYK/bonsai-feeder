@@ -8,18 +8,20 @@
 #include "Bonsai.h"
 
 #define ONESECOND 1000UL
+#define FIVESECONDS long (5 * ONESECOND)
 #define ONEMINUTE long (60 * ONESECOND)
 #define FIVEMINUTES long (5 * ONEMINUTE)
 #define FIFTEENMINUTES long (15 * ONEMINUTE)
 
 int watering_duration_ms = 1500;
-int time_to_wait_between_checks = ONEMINUTE;
 
-Bonsai::Bonsai(String name, int pump_pin, int sensor_pin, int desired_moisture)
+Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture)
 {
   pinMode(pump_pin, OUTPUT);
+  pinMode(sensor_power_pin, OUTPUT);
   _name = name;
   _pump_pin = pump_pin;
+  _sensor_power_pin = sensor_power_pin;
   _sensor_pin = sensor_pin;
   _last_moisture_level = 0;
   _desired_moisture = desired_moisture;
@@ -34,6 +36,9 @@ void Bonsai::check()
     // Serial.println("We are still waiting so do nothing.");
     return;
   }
+
+  // Wait before check again
+  _next_check_at = now + FIFTEENMINUTES;
 
   int new_moisture_level = measureMoisture();
 
@@ -57,11 +62,6 @@ void Bonsai::check()
     _next_check_at = millis() + FIVEMINUTES;
     Serial.print("\tGave some water, will pause for 5 minutes so the water can soak into the ground");
   }
-  else{
-
-    // Wait `time_to_wait_between_checks` before check again
-    _next_check_at = now + time_to_wait_between_checks;
-  }
 
   Serial.println();  
 }
@@ -75,7 +75,22 @@ void Bonsai::giveWater()
 
 int Bonsai::measureMoisture()
 {
+  // Only switch on the sensor during measuring to prevent a lot of corrosion.
+  digitalWrite(_sensor_power_pin, HIGH);
+
+  // Wat a bit so the sensor can get an accurate reading
+  delay(500);
+
   int value = analogRead(_sensor_pin);
-  value = map(value,1020,310,0,100);    
+  // Serial.print("\nValue sensor " + _name + ": ");  
+  // Serial.print(value);
+  // Serial.print("\n");
+
+  // Map value to 0-100%
+  value = map(value,1000,100,0,100);
+
+  // Shut down the sensor.
+  digitalWrite(_sensor_power_pin, LOW);
+
   return value;
 }
