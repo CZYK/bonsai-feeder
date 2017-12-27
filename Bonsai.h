@@ -19,9 +19,10 @@ class Bonsai
   private:
     String _name;
     int _pump_pin;
-	int _sensor_pin;
-	int _desired_moisture;
-	int _watering_ago;
+    int _sensor_pin;
+    int _last_moisture_level;
+    int _desired_moisture;
+    long _next_check_at;
 };
 
 #endif
