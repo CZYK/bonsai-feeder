@@ -93,8 +93,7 @@ void Bonsai::giveWater()
   delay(watering_duration_ms);
   digitalWrite(_pump_pin, LOW);
   
-  Serial.print("\t");
-  Serial.print("Gave some water");
+  Serial.print(" (Gave some water)");
 }
 
 int Bonsai::measureMoisture()
