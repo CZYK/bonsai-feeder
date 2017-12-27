@@ -45,7 +45,9 @@ void Bonsai::check()
 
   Serial.print(now / ONEMINUTE);
   Serial.print("\t");
-  Serial.print(_name + "\tMoisture level: " + new_moisture_level + "/" + _desired_moisture);
+  Serial.print(_name);
+  Serial.print("\t");
+  Serial.print((String) new_moisture_level + "/" + (String) _desired_moisture);
   _last_moisture_level = new_moisture_level;
 
   if(new_moisture_level < _desired_moisture){

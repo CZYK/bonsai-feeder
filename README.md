@@ -20,7 +20,8 @@ Bonsai rob("Rob",8, A1, 50);
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("Starting programm");
+  Serial.println("Starting bonsai feeder...\n");
+  Serial.println("Minutes\tName\tMoisture");
 }
 
 void loop()
