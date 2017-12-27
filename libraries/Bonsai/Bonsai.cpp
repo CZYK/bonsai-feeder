@@ -8,7 +8,7 @@
 #include "Bonsai.h"
 
 int watering_duration_ms = 2000;
-int watering_absorption_wait_samples = 6;
+int watering_absorption_wait_samples = 6; // 6 samples of 10 seconds equals one minute.
 
 Bonsai::Bonsai(String name, int pump_pin, int sensor_pin, int desired_moisture)
 {
