@@ -5,7 +5,9 @@ System to automatically water our bonsais
 ## How to install?
 
 First you will need to add this library into your Arduino Library folder.
-`git clone git@github.com:CZYK/bonsai-feeder.git %userprofile%\documents\Arduino\libaries\Bonsai`
+```sh
+git clone git@github.com:CZYK/bonsai-feeder.git ~/Documents/Arduino/libraries/Bonsai
+```
 
 Now you can write your own module which uses this library. You can find an example below.
 
