@@ -9,6 +9,11 @@ First you will need to add this library into your Arduino Library folder.
 git clone git@github.com:CZYK/bonsai-feeder.git ~/Documents/Arduino/libraries/Bonsai
 ```
 
+### Install libraries
+This library requires the following libraries to be installed as well.
+- https://www.arduino.cc/en/Tutorial/EEPROMPut
+- http://playground.arduino.cc/Code/Time
+
 Now you can write your own module which uses this library. You can find an example below.
 
 ````Arduino
