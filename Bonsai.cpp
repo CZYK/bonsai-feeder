@@ -13,7 +13,10 @@
 #define FIVEMINUTES long (5 * ONEMINUTE)
 #define FIFTEENMINUTES long (15 * ONEMINUTE)
 
-int watering_duration_ms = 1500;
+long watering_duration_ms = 1200;
+
+long check_invertval = FIVESECONDS; // Default to FIFTEENMINUTES
+long water_soak_wait_time = FIVEMINUTES; // Default to FIVEMINUTES
 
 Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture)
 {
@@ -26,19 +29,21 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _last_moisture_level = 0;
   _desired_moisture = desired_moisture;
   _next_check_at = 0; // initialize such that a reading is due the first time
+  _pump_wait_until = 0;
 }
 
 void Bonsai::check()
 {
   long now = millis();
-
-  if (now - _next_check_at <= 0){
+  long ms_to_wait = _next_check_at - now;
+  
+  if (ms_to_wait > 0){
     // Serial.println("We are still waiting so do nothing.");
     return;
   }
-
+  
   // Wait before check again
-  _next_check_at = now + FIFTEENMINUTES;
+  _next_check_at = now + check_invertval;
 
   int new_moisture_level = measureMoisture();
 
@@ -48,19 +53,19 @@ void Bonsai::check()
     return;
   }
 
-  Serial.print(now / ONEMINUTE);
+  Serial.print(now / ONESECOND);
   Serial.print("\t");
   Serial.print(_name);
   Serial.print("\t");
-  Serial.print((String) new_moisture_level + "/" + (String) _desired_moisture);
+  Serial.print(new_moisture_level);
+  Serial.print("/");
+  Serial.print(_desired_moisture);
+
   _last_moisture_level = new_moisture_level;
 
   if(new_moisture_level < _desired_moisture){
 
     giveWater();
-    // Give the soil some time to soak into the ground
-    _next_check_at = millis() + FIVEMINUTES;
-    Serial.print("\tGave some water, will pause for 5 minutes so the water can soak into the ground");
   }
 
   Serial.println();  
@@ -68,9 +73,28 @@ void Bonsai::check()
 
 void Bonsai::giveWater()
 {
-    digitalWrite(_pump_pin, HIGH);
-    delay(watering_duration_ms);
-    digitalWrite(_pump_pin, LOW);
+  long now = millis();
+  long ms_to_wait = _pump_wait_until - now;
+  
+  if (ms_to_wait > 0){
+    Serial.print("\t");
+    Serial.print("Wait ");
+    Serial.print(ms_to_wait / ONESECOND);
+    Serial.print(" seconds so the water can soak into the ground...");
+    return;
+  }
+
+  // Give the soil some time to soak into the ground
+  _pump_wait_until = now + water_soak_wait_time;  
+  Serial.print("\t");
+  Serial.print("Thursty!");
+
+  // digitalWrite(_pump_pin, HIGH);
+  delay(watering_duration_ms);
+  digitalWrite(_pump_pin, LOW);
+  
+  Serial.print("\t");
+  Serial.print("Gave some water");
 }
 
 int Bonsai::measureMoisture()
@@ -79,7 +103,7 @@ int Bonsai::measureMoisture()
   digitalWrite(_sensor_power_pin, HIGH);
 
   // Wat a bit so the sensor can get an accurate reading
-  delay(500);
+  delay(50);
 
   int value = analogRead(_sensor_pin);
   // Serial.print("\nValue sensor " + _name + ": ");  
@@ -87,7 +111,7 @@ int Bonsai::measureMoisture()
   // Serial.print("\n");
 
   // Map value to 0-100%
-  value = map(value,1000,100,0,100);
+  value = map(value,1000,0,0,100);
 
   // Shut down the sensor.
   digitalWrite(_sensor_power_pin, LOW);

@@ -14,20 +14,20 @@ Now you can write your own module which uses this library. You can find an examp
 # Bonsai.ino
 #include <Bonsai.h>
 
-Bonsai danko("Danko",12, A0, 50);
-Bonsai rob("Rob",8, A1, 50);
+Bonsai danko("Danko", 12, 8, A0, 30);
+Bonsai rob("Rob", 4, 2, A1, 30);
 
 void setup()
 {
   Serial.begin(9600);
   Serial.println("Starting bonsai feeder...\n");
-  Serial.println("Minutes\tName\tMoisture");
+  Serial.println("Seconds\tName\tMoisture");
 }
 
 void loop()
 {
   danko.check();
   rob.check();
-  delay(100);
+  delay(250);
 }
 ```
