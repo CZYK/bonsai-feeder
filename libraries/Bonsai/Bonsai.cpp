@@ -10,7 +10,7 @@
 #include <Time.h>
 
 int watering_duration_ms = 2000;
-int watering_absorption_wait_samples = 6;
+int watering_absorption_wait_samples = 6; // 6 samples of 10 seconds equals one minute.
 
 int eeprom_address = 0;
 
