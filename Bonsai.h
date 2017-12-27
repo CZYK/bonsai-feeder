@@ -21,8 +21,8 @@ class Bonsai
     int _pump_pin;
     int _sensor_power_pin;
     int _sensor_pin;
-    int _last_moisture_level;
     int _desired_moisture;
+    int _last_measured_moisture_level;
     long _next_check_at;
     long _pump_wait_until;
 };

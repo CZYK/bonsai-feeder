@@ -26,7 +26,7 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _pump_pin = pump_pin;
   _sensor_power_pin = sensor_power_pin;
   _sensor_pin = sensor_pin;
-  _last_moisture_level = 0;
+  _last_measured_moisture_level = 0;
   _desired_moisture = desired_moisture;
   _next_check_at = 0; // initialize such that a reading is due the first time
   _pump_wait_until = 0;
@@ -48,7 +48,7 @@ void Bonsai::check()
   int new_moisture_level = measureMoisture();
 
   // Only continue when the moisture level differs more then 2%
-  if(abs(_last_moisture_level - new_moisture_level) < 2){
+  if(abs(_last_measured_moisture_level - new_moisture_level) < 2){
     // Serial.println("There is not much changed");
     return;
   }
@@ -61,7 +61,7 @@ void Bonsai::check()
   Serial.print("/");
   Serial.print(_desired_moisture);
 
-  _last_moisture_level = new_moisture_level;
+  _last_measured_moisture_level = new_moisture_level;
 
   if(new_moisture_level < _desired_moisture){
 
