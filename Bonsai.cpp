@@ -14,12 +14,11 @@
 #define FIVEMINUTES long (5 * ONEMINUTE)
 #define FIFTEENMINUTES long (15 * ONEMINUTE)
 #define ONEHOUR long (60 * ONEMINUTE)
-#define MOISTUREDIFF 2 // If it differs less then this we do nothing.
+#define MOISTUREDIFF 1 // If it differs less then this we do nothing.
 
-long watering_duration_ms = 1000;
-long check_invertval = FIVESECONDS;           // The interval on which to check the moisture        (FIVESECONDS)
-long water_soak_wait_time = FIFTEENSECONDS;   // How long shall we wait for the water to soak?      (ONEMINUTE)
-long force_interval = ONEHOUR;                // Force a reading at least every interval.
+long watering_duration_ms = 1500;
+long check_inverval = FIVESECONDS;           // The interval on which to check the moisture        (FIVESECONDS)
+long water_soak_wait_time = ONEMINUTE;        // How long shall we wait for the water to soak?      (ONEMINUTE)
 
 Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture)
 {
@@ -34,6 +33,7 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _next_check_at = 0; // initialize such that a reading is due the first time
   _pump_wait_until = FIVESECONDS; // Do not pump the first minute of the program!
   _last_check_at = 0;
+  _force_interval = check_inverval; // Force a reading at least every interval.
 }
 
 void Bonsai::check()
@@ -49,15 +49,14 @@ void Bonsai::check()
   int new_moisture_level = measureMoisture();
 
   // Wait before check again
-  _next_check_at = now + check_invertval;
+  _next_check_at = now + check_inverval;
 
   // Only continue when the moisture level differs more then 2% and last check is within a certain perio
-  long last_check_time_ago = now - _last_check_at;
-  if(last_check_time_ago < force_interval && abs(_last_measured_moisture_level - new_moisture_level) < MOISTUREDIFF){
+  if((now - _last_check_at) < _force_interval && abs(_last_measured_moisture_level - new_moisture_level) < MOISTUREDIFF){
     // Serial.println("There is not much changed");
     return;
   }
-
+  
   _last_check_at = now;
   
   Serial.print(now / ONESECOND / 60);
@@ -73,6 +72,11 @@ void Bonsai::check()
   if(new_moisture_level < _desired_moisture){
 
     giveWater();
+    _force_interval = check_inverval;
+  }
+  else{
+
+    _force_interval = ONEHOUR;
   }
 
   Serial.println();  

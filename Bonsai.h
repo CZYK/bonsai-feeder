@@ -26,6 +26,7 @@ class Bonsai
     long _next_check_at;
     long _pump_wait_until;
     long _last_check_at;
+    long _force_interval;
 };
 
 #endif
