@@ -25,6 +25,7 @@ class Bonsai
     int _last_measured_moisture_level;
     long _next_check_at;
     long _pump_wait_until;
+    long _last_check_at;
 };
 
 #endif
