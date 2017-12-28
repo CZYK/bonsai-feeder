@@ -13,12 +13,13 @@
 #define ONEMINUTE long (60 * ONESECOND)
 #define FIVEMINUTES long (5 * ONEMINUTE)
 #define FIFTEENMINUTES long (15 * ONEMINUTE)
+#define ONEHOUR long (60 * ONEMINUTE)
 #define MOISTUREDIFF 2 // If it differs less then this we do nothing.
 
-long watering_duration_ms = 900;        // TODO: Setup correct timing
-long check_invertval = FIVESECONDS;     // The interval on which to check the moisture                 (FIVESECONDS)
-long water_soak_wait_time = FIFTEENSECONDS;  // How long shall we wait for the water to soak?          (ONEMINUTE)
-long force_interval = FIVEMINUTES;
+long watering_duration_ms = 1000;
+long check_invertval = FIVESECONDS;           // The interval on which to check the moisture        (FIVESECONDS)
+long water_soak_wait_time = FIFTEENSECONDS;   // How long shall we wait for the water to soak?      (ONEMINUTE)
+long force_interval = ONEHOUR;                // Force a reading at least every interval.
 
 Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture)
 {
