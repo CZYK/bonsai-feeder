@@ -10,7 +10,7 @@ git clone git@github.com:CZYK/bonsai-feeder.git ~/Documents/Arduino/libraries/Bo
 ```
 Now you can write your own module which uses this library. You can find an example below.
 
-````Arduino
+```Arduino
 #include <Bonsai.h>
 
 // Danko tree
