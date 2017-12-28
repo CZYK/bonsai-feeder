@@ -14,7 +14,7 @@
 #define FIVEMINUTES long (5 * ONEMINUTE)
 #define FIFTEENMINUTES long (15 * ONEMINUTE)
 #define ONEHOUR long (60 * ONEMINUTE)
-#define MOISTUREDIFF 1 // If it differs less then this we do nothing.
+#define MOISTUREDIFF 2 // If it differs less then this we do nothing.
 
 long watering_duration_ms = 1500;
 long check_inverval = FIVESECONDS;           // The interval on which to check the moisture        (FIVESECONDS)
