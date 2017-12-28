@@ -25,7 +25,7 @@ void setup()
 {
   Serial.begin(9600);
   Serial.println("Starting bonsai feeder...\n");
-  Serial.println("Seconds\tName\tMoisture");
+  Serial.println("Minutes\tName\tMoisture");
   pinMode(13, OUTPUT);
 }
 
