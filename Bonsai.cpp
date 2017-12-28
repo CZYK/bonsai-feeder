@@ -14,7 +14,6 @@
 #define FIFTEENMINUTES long (15 * ONEMINUTE)
 
 long watering_duration_ms = 1200;
-
 long check_invertval = FIVESECONDS; // Default to FIFTEENMINUTES
 long water_soak_wait_time = FIVEMINUTES; // Default to FIVEMINUTES
 
@@ -29,7 +28,7 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _last_measured_moisture_level = 0;
   _desired_moisture = desired_moisture;
   _next_check_at = 0; // initialize such that a reading is due the first time
-  _pump_wait_until = 0;
+  _pump_wait_until = millis() + ONEMINUTE;
 }
 
 void Bonsai::check()
@@ -80,7 +79,7 @@ void Bonsai::giveWater()
     Serial.print("\t");
     Serial.print("Wait ");
     Serial.print(ms_to_wait / ONESECOND);
-    Serial.print(" seconds so the water can soak into the ground...");
+    Serial.print(" seconds before watering again...");
     return;
   }
 
