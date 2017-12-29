@@ -11,6 +11,8 @@
 #define ONEMINUTE ONESECOND * 60UL
 #define ONEHOUR ONEMINUTE * 60UL
 
+#define DEMO_MODE false
+
 Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture)
 {
   _name = name;
@@ -21,10 +23,18 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
 
   _watering_duration_ms = 1500;
   _interval = ONEMINUTE * 15UL;
+
+  if(DEMO_MODE){
+
+    _desired_moisture_level = 90;
+    _watering_duration_ms = 300;
+    _interval = ONESECOND * 5UL;
+  }
+
   _previousMillis = _interval; // Instantiate in such a way that the check start immediately.
 
   pinMode(_pump_pin, OUTPUT);
-  pinMode(_sensor_pin, OUTPUT);
+  pinMode(_sensor_power_pin, OUTPUT);
 }
 
 void Bonsai::check()
@@ -79,7 +89,7 @@ int Bonsai::_measureMoisture()
   digitalWrite(_sensor_power_pin, HIGH);
 
   // Wat a bit so the sensor can get an accurate reading
-  delay(10);
+  delay(50);
 
   int value = analogRead(_sensor_pin);
 
