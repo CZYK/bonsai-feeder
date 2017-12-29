@@ -17,7 +17,6 @@ class Bonsai
   private:
 	  void _giveWater(int watering_time);
     int _measureMoisture();
-    bool _amIThirsty();
     String _name;
     int _pump_pin;
     int _sensor_power_pin;
@@ -29,6 +28,7 @@ class Bonsai
 
     long _interval;
     unsigned long _previousMillis;
+    bool _first_run;
 };
 
 #endif
