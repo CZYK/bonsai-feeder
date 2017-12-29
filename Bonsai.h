@@ -14,19 +14,21 @@ class Bonsai
   public:
     Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture);
     void check();
-	void giveWater();
-    int measureMoisture();
   private:
+	  void _giveWater(int watering_time);
+    int _measureMoisture();
+    bool _amIThirsty();
     String _name;
     int _pump_pin;
     int _sensor_power_pin;
     int _sensor_pin;
-    int _desired_moisture;
-    int _last_measured_moisture_level;
-    long _next_check_at;
-    long _pump_wait_until;
-    long _last_check_at;
-    long _force_interval;
+
+    int _desired_moisture_level;
+    int _current_moisture_level;
+    int _watering_duration_ms;
+
+    long _interval;
+    unsigned long _previousMillis;
 };
 
 #endif

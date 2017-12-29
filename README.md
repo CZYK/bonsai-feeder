@@ -31,13 +31,14 @@ void setup()
 
 void loop()
 {
+  // Blink the LED on the Arduino for user feedback
   digitalWrite(13, HIGH);
-  danko.check();
   delay(250);
-  rob.check();
   digitalWrite(13, LOW);
-  
-  delay(250);
+  delay(750);
+
+  danko.check();
+  rob.check();
 }
 ```
 
