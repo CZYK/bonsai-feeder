@@ -42,7 +42,7 @@ void loop()
 }
 ```
 
-These are the analogue output values of the new sensors. An average of 250-1000 has been mapped to 0-100%. It would be nice to calibrate this per sensor but the code (at the moment) does not allow that. That is also the reason why mine tree is set to 40% while yours is set to 25%. Both equal the same level of moist (the bottom of the sensor in the water).
+These are the analogue output values of the new sensors. An average of 250-1000 has been mapped to 0-100%. It would be nice to calibrate this per sensor but the code (at the moment) does not allow that. That is also the reason why my tree is set to 40% while yours is set to 25%. Both equal the same level of moist (the bottom of the sensor in the water).
 
 | Reading | Danko | Rob |
 | :--------- | -------: | ----: |
