@@ -24,12 +24,7 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _watering_duration_ms = 1500;
   _interval = ONEMINUTE * 15UL;
 
-  if(DEMO_MODE){
-
-    _desired_moisture_level = 90;
-    _watering_duration_ms = 300;
-    _interval = ONESECOND * 5UL;
-  }
+  _first_run = true;
 
   _previousMillis = _interval; // Instantiate in such a way that the check start immediately.
 
@@ -39,6 +34,19 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
 
 void Bonsai::check()
 {
+  int desired_moisture_level = _desired_moisture_level;
+  int watering_duration_ms = _watering_duration_ms;
+  long interval = _interval;
+
+  if(DEMO_MODE || _first_run){
+
+    Serial.println("Demo mode, testing the system.");
+    desired_moisture_level = 90;
+    watering_duration_ms = 300;
+    interval = ONESECOND;
+    _first_run = false;
+  }
+
   unsigned long currentMillis = millis();
   
   if (currentMillis - _previousMillis < _interval) {
@@ -56,24 +64,19 @@ void Bonsai::check()
   Serial.print("\t");
   Serial.print(_current_moisture_level);
   Serial.print("/");
-  Serial.print(_desired_moisture_level);
+  Serial.print(desired_moisture_level);
 
-  if(_amIThirsty()){
+  if(_current_moisture_level < desired_moisture_level){
 
     Serial.print("\t");
     Serial.print("Thirsty!");
 
-    _giveWater(_watering_duration_ms);
+    _giveWater(watering_duration_ms);
     
     Serial.print(" (Gave some water)");
   }
 
   Serial.println();  
-}
-
-bool Bonsai::_amIThirsty()
-{
-  return _current_moisture_level < _desired_moisture_level;
 }
 
 void Bonsai::_giveWater(int watering_time)
