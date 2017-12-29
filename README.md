@@ -44,8 +44,8 @@ void loop()
 
 These are the analogue output values of the new sensors. An average of 250-1000 has been mapped to 0-100%. It would be nice to calibrate this per sensor but the code (at the moment) does not allow that. That is also the reason why Danko's tree is set to 40% while Rob's is set to 25%. Both equal the same level of moist (the bottom of the sensor in the water).
 
-| Reading | Danko | Rob |
-| :--------- | -------: | ----: |
-| Open Air  | 1000  | 1002 |
-| Feet wet  | 770 | 850 |
-| Completely wet  | 296 | 250 |
+| Reading | Danko | Rob | Comment |
+| :--------- | -------: | ----: | --- |
+| Open Air  | 1000  | 1002 | Sensor in dry air |
+| Feet wet  | 770 | 850 | Bottom of sensor touching the water, not so accurate |
+| Completely wet  | 296 | 250 | Sensor completely soaked in a cup of water |
