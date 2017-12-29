@@ -19,11 +19,9 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _sensor_pin = sensor_pin;
   _desired_moisture_level = desired_moisture;
 
-  _current_moisture_level = 0;
-  _previousMillis = 0;
-
   _watering_duration_ms = 1500;
-  _interval = ONEHOUR;
+  _interval = ONEMINUTE * 15UL;
+  _previousMillis = _interval; // Instantiate in such a way that the check start immediately.
 
   pinMode(_pump_pin, OUTPUT);
   pinMode(_sensor_pin, OUTPUT);
