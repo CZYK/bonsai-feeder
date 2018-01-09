@@ -10,9 +10,6 @@
 #define ONESECOND 1000UL
 #define ONEMINUTE ONESECOND * 60UL
 #define ONEHOUR ONEMINUTE * 60UL
-
-#define DEMO_MODE false
-
 Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture)
 {
   _name = name;
@@ -21,12 +18,12 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _sensor_pin = sensor_pin;
   _desired_moisture_level = desired_moisture;
 
-  _watering_duration_ms = 1500;
+  _watering_duration_ms = 1750;
   _interval = ONEMINUTE * 15UL;
 
-  _first_run = true;
+  _runs = 0;
 
-  _previousMillis = _interval; // Instantiate in such a way that the check start immediately.
+  _previousMillis = _interval; // Instantiate in such a way (future) that the check start immediately.
 
   pinMode(_pump_pin, OUTPUT);
   pinMode(_sensor_power_pin, OUTPUT);
@@ -37,22 +34,28 @@ void Bonsai::check()
   int desired_moisture_level = _desired_moisture_level;
   int watering_duration_ms = _watering_duration_ms;
   long interval = _interval;
+  
+  unsigned long currentMillis = millis();
 
-  if(DEMO_MODE || _first_run){
+  
+  if(_runs == 0){
 
     Serial.println("Demo mode, testing the system.");
     desired_moisture_level = 90;
     watering_duration_ms = 300;
     interval = ONESECOND;
-    _first_run = false;
   }
-
-  unsigned long currentMillis = millis();
+  else if(_runs == 1){
+	  
+    interval = 5UL * ONESECOND;
+  }
   
-  if (currentMillis - _previousMillis < _interval) {
+  if(currentMillis - _previousMillis < interval){
     // Serial.println("We are still waiting so do nothing.");
     return;
   }
+  
+  _runs++;  
 
   _previousMillis = currentMillis;
   
