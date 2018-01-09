@@ -28,7 +28,7 @@ class Bonsai
 
     long _interval;
     unsigned long _previousMillis;
-    bool _first_run;
+    int _runs;
 };
 
 #endif
