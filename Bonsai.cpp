@@ -40,7 +40,6 @@ void Bonsai::check()
   
   if(_runs == 0){
 
-    Serial.println("Demo mode, testing the system.");
     desired_moisture_level = 90;
     watering_duration_ms = 300;
     interval = ONESECOND;
@@ -55,19 +54,18 @@ void Bonsai::check()
     return;
   }
   
-  _runs++;  
-
   _previousMillis = currentMillis;
   
   _current_moisture_level = _measureMoisture();
   
-  Serial.print(currentMillis / ONEMINUTE);
+  Serial.print(_runs);
   Serial.print("\t");
   Serial.print(_name);
   Serial.print("\t");
   Serial.print(_current_moisture_level);
   Serial.print("/");
   Serial.print(desired_moisture_level);
+  
 
   if(_current_moisture_level < desired_moisture_level){
 
@@ -78,8 +76,15 @@ void Bonsai::check()
     
     Serial.print(" (Gave some water)");
   }
+  
+  if(_runs == 0){
 
-  Serial.println();  
+	Serial.print("\t");
+	Serial.print("[Demo mode, testing the system]");
+  }  
+
+  _runs++;
+  Serial.println();
 }
 
 void Bonsai::_giveWater(int watering_time)
