@@ -17,9 +17,6 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _sensor_power_pin = sensor_power_pin;
   _sensor_pin = sensor_pin;
   _desired_moisture_level = desired_moisture;
-
-  
-  
   _watering_duration_ms = watering_duration_ms;
   _interval = ONEMINUTE * 15UL;
 
