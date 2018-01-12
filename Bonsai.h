@@ -12,7 +12,7 @@
 class Bonsai
 {
   public:
-    Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture);
+    Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture, int watering_duration_ms = 2000);
     void check();
   private:
 	  void _giveWater(int watering_time);

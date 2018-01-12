@@ -10,15 +10,14 @@
 #define ONESECOND 1000UL
 #define ONEMINUTE ONESECOND * 60UL
 #define ONEHOUR ONEMINUTE * 60UL
-Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture)
+Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, int desired_moisture, int watering_duration_ms)
 {
   _name = name;
   _pump_pin = pump_pin;
   _sensor_power_pin = sensor_power_pin;
   _sensor_pin = sensor_pin;
   _desired_moisture_level = desired_moisture;
-
-  _watering_duration_ms = 1750;
+  _watering_duration_ms = watering_duration_ms;
   _interval = ONEMINUTE * 15UL;
 
   _runs = 0;
