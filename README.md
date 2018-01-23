@@ -16,11 +16,11 @@ Now you can write your own module which uses this library. You can find an examp
 
 // Danko tree
 // This tree's sensor measures 40% when the bottom touches the water.
-Bonsai danko("Danko", 12, 8, A0, 25, 3000);
+Bonsai danko("Danko", 12, 8, A0, 20, 6000);
 
 // Rob's tree
 // This tree's sensor measures 25% when the bottom touches the water.
-Bonsai rob("Rob", 4, 2, A1, 25, 2000);
+Bonsai rob("Rob", 4, 2, A1, 25, 4000);
 
 void setup()
 {
@@ -32,14 +32,13 @@ void setup()
 
 void loop()
 {
-  // Blink the LED on the Arduino for user feedback
   digitalWrite(13, HIGH);
-  delay(250);
-  digitalWrite(13, LOW);
-  delay(750);
-
   danko.check();
+  delay(250);
   rob.check();
+  digitalWrite(13, LOW);
+  
+  delay(250);
 }
 ```
 

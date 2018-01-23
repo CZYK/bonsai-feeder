@@ -18,7 +18,7 @@ Bonsai::Bonsai(String name, int pump_pin, int sensor_power_pin, int sensor_pin, 
   _sensor_pin = sensor_pin;
   _desired_moisture_level = desired_moisture;
   _watering_duration_ms = watering_duration_ms;
-  _interval = ONEMINUTE * 15UL;
+  _interval = ONEHOUR;
 
   _runs = 0;
 
@@ -40,7 +40,7 @@ void Bonsai::check()
   if(_runs == 0){
 
     desired_moisture_level = 90;
-    watering_duration_ms = 300;
+    watering_duration_ms = _watering_duration_ms * 0.20;
     interval = ONESECOND;
   }
   else if(_runs == 1){
