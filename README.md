@@ -16,7 +16,7 @@ Now you can write your own module which uses this library. You can find an examp
 
 // Danko tree
 // This tree's sensor measures 40% when the bottom touches the water.
-Bonsai danko("Danko", 12, 8, A0, 20, 6000);
+Bonsai danko("Danko", 12, 8, A0, 20, 10000);
 
 // Rob's tree
 // This tree's sensor measures 25% when the bottom touches the water.
