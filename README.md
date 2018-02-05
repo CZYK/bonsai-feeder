@@ -46,10 +46,12 @@ These are the analogue output values of the new sensors. An average of 250-1000 
 | Completely wet  | 296 | 250 | Sensor completely soaked in a cup of water |
 
 ## Ingredients:
-- [Arduino UNO](https://www.tinytronics.nl/shop/nl/arduino/main-boards/arduino-uno-r3?search=arduino%20uno) (€ 23)
-- [Moist sensor](https://www.tinytronics.nl/shop/nl/sensoren/temperatuur-lucht-vochtigheid/bodemvocht-sensor-module) (€ 3)
-- [Relais](https://www.tinytronics.nl/shop/nl/diversen/relais/5v-relais-1-channel-hoog-actief) (€ 2,50)
-- [Water pump](https://www.tinytronics.nl/shop/nl/robotica/motoren/motor/onderwaterpomp-verticaal-3-6v) (€ 4)
-- [Water hose](https://www.tinytronics.nl/shop/nl/robotica/toebehoren/waterslang-voor-onderwaterpomp-verticaal-horizontaal-3-6v-transparant-1-meter?search=water) (€ 1,50)
-- [One-way-valve](https://www.vijvertopper.nl/product/8249/pp-terugslagklep-6mm.html) (€ 3,15)
-- [PP T-stuk 6,4mm](https://www.vijvertopper.nl/product/8303/pp-t-stuk-6-4mm.html) (€ 1,70)
+| Component | Description | Price |
+| :-------- | :---------- | ----: |
+| [Arduino UNO](https://www.tinytronics.nl/shop/nl/arduino/main-boards/arduino-uno-r3?search=arduino%20uno) | Main board | € 23,00 |
+| [Moist sensor](https://www.tinytronics.nl/shop/nl/sensoren/temperatuur-lucht-vochtigheid/bodemvocht-sensor-module) | Measure the humidity | € 3,00 |
+| [Relais](https://www.tinytronics.nl/shop/nl/diversen/relais/5v-relais-1-channel-hoog-actief) | To power the water pump | € 2,50 |
+| [Water pump](https://www.tinytronics.nl/shop/nl/robotica/motoren/motor/onderwaterpomp-verticaal-3-6v) | | € 4,00 |
+| [Water hose](https://www.tinytronics.nl/shop/nl/robotica/toebehoren/waterslang-voor-onderwaterpomp-verticaal-horizontaal-3-6v-transparant-1-meter?search=water) | | € 1,50 |
+| [One-way-valve](https://www.vijvertopper.nl/product/8249/pp-terugslagklep-6mm.html) | So the water stays in the hose | € 3,15 |
+ [PP T-stuk 6,4mm](https://www.vijvertopper.nl/product/8303/pp-t-stuk-6-4mm.html) | For more even water distribution | € 1,70 |
