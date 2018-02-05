@@ -48,6 +48,7 @@ These are the analogue output values of the new sensors. An average of 250-1000 
 ## Ingredients:
 | Component | Description | Price |
 | :-------- | :---------- | ----: |
+| [Bonsai](https://www.bonsaimoyogi.nl/bonsaimoyogi.nl/bonsaimix-3stuks-Moyogi-stijl) | | € 10,00 |
 | [Arduino UNO](https://www.tinytronics.nl/shop/nl/arduino/main-boards/arduino-uno-r3?search=arduino%20uno) | Main board | € 23,00 |
 | [Moist sensor](https://www.tinytronics.nl/shop/nl/sensoren/temperatuur-lucht-vochtigheid/bodemvocht-sensor-module) | Measure the humidity | € 3,00 |
 | [Relais](https://www.tinytronics.nl/shop/nl/diversen/relais/5v-relais-1-channel-hoog-actief) | To power the water pump | € 2,50 |
