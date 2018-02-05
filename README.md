@@ -1,7 +1,7 @@
 # bonsai-feeder
 System to automatically water our bonsais
 
-![Setup bonsai water feeder](/assets/assembly.jpg)
+![Setup bonsai water feeder](/assets/assembly2.jpg)
 
 ## How to install?
 
