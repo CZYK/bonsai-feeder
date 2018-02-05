@@ -16,11 +16,7 @@ Now you can write your own module which uses this library. You can find an examp
 
 // Danko tree
 // This tree's sensor measures 40% when the bottom touches the water.
-Bonsai danko("Danko", 12, 8, A0, 20, 10000);
-
-// Rob's tree
-// This tree's sensor measures 25% when the bottom touches the water.
-Bonsai rob("Rob", 4, 2, A1, 25, 4000);
+Bonsai danko("Danko", 12, 8, A0, 10, 3000);
 
 void setup()
 {
@@ -35,7 +31,6 @@ void loop()
   digitalWrite(13, HIGH);
   danko.check();
   delay(250);
-  rob.check();
   digitalWrite(13, LOW);
   
   delay(250);
@@ -55,6 +50,6 @@ These are the analogue output values of the new sensors. An average of 250-1000 
 - [Moist sensor](https://www.tinytronics.nl/shop/nl/sensoren/temperatuur-lucht-vochtigheid/bodemvocht-sensor-module) (€ 3)
 - [Relais](https://www.tinytronics.nl/shop/nl/diversen/relais/5v-relais-1-channel-hoog-actief) (€ 2,50)
 - [Water pump](https://www.tinytronics.nl/shop/nl/robotica/motoren/motor/onderwaterpomp-verticaal-3-6v) (€ 4)
-- [Water hose](https://www.tinytronics.nl/shop/nl/robotica/toebehoren/waterslang-voor-onderwaterpomp-verticaal-horizontaal-3-6v-transparant-1-meter?search=water)
+- [Water hose](https://www.tinytronics.nl/shop/nl/robotica/toebehoren/waterslang-voor-onderwaterpomp-verticaal-horizontaal-3-6v-transparant-1-meter?search=water) (€ 1,50)
 - [One-way-valve](https://www.vijvertopper.nl/product/8249/pp-terugslagklep-6mm.html) (€ 3,15)
 - [PP T-stuk 6,4mm](https://www.vijvertopper.nl/product/8303/pp-t-stuk-6-4mm.html) (€ 1,70)
